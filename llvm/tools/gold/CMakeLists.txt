@@ -1,4 +1,4 @@
-set(LLVM_EXPORTED_SYMBOL_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gold.exports)
+#set(LLVM_EXPORTED_SYMBOL_FILE ${CMAKE_CURRENT_SOURCE_DIR}/gold.exports)
 
 if( LLVM_ENABLE_PIC AND LLVM_BINUTILS_INCDIR )
   include_directories( ${LLVM_BINUTILS_INCDIR} )
@@ -9,10 +9,13 @@ if( LLVM_ENABLE_PIC AND LLVM_BINUTILS_INCDIR )
      LTO
      BitWriter
      IPO
+     Passes
      )
 
   add_llvm_library(LLVMgold MODULE
     gold-plugin.cpp
     )
+  export_executable_symbols(LLVMgold)
+
 
 endif()
