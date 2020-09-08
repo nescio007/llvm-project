@@ -1,14 +1,16 @@
 set(LLVM_LINK_COMPONENTS
+  Extensions
   Support
+  Passes
   )
 
 add_lld_tool(lld
   lld.cpp
 
-  ENABLE_PLUGINS
+  DEPENDS
   SUPPORT_PLUGINS
   )
-export_executable_symbols_for_plugins(lld)
+export_executable_symbols(lld)
 
 target_link_libraries(lld
   PRIVATE
